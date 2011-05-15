@@ -22,7 +22,7 @@ angular.widget('@my:tabs', function(arrayProperty, compileElement) {
           createNewTab(i);
         }
       } else if (length < oldLength) {
-        for (i = length; i > oldLength; i++) {
+        for (i = length; i < oldLength; i++) {
           linkElement.tabs('remove', last);
         }
       } else {
