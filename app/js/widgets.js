@@ -30,7 +30,6 @@ angular.widget('@my:tabs', function(arrayProperty, compileElement) {
           createNewTab(i);
         }
       }
-      alert(value);
     });
   };
 });
