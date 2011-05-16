@@ -4,15 +4,20 @@ angular.widget('@my:tabs', function(arrayProperty, compileElement) {
   var compiler = this;
   var sequence = 0;
   var template = $('.template', compileElement).hide();
+  var templateFn = compiler.compile(template);
   compileElement.append("<ul></ul>");
   compileElement.tabs();
   return function(linkElement) {
     var scope = this;
     function createNewTab(i) {
-      var newId = 'tab' + sequence++;
-      var newTab = template.clone().show().attr('id', newId);
-      linkElement.append(newTab);
-      linkElement.tabs('add', '#'+newId, 'label');
+      var newScope = scope.$new();
+      newScope.$set('$e', scope[arrayProperty][i]);
+      templateFn(newScope, function(newTab) {
+        var newId = 'my-tabs_' + sequence++;
+        linkElement.append(newTab.show().attr('id', newId));
+        linkElement.tabs('add', '#'+newId, 'label');
+        newScope.$eval();
+      });
     } 
     scope.$watch(arrayProperty+'.length', function(length, oldLength) {
       var last = length - 1;

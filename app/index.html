@@ -9,7 +9,7 @@
 <body ng:controller="TabsSampleCtrl">
 
   <div my:tabs="persons">
-    <div class="template">template</div>
+    <div class="template">name: {{$e.firstName}} {{$e.lastName}}</div>
   </div>
   <div>
     <button ng:click="addPerson()">add person</button>
