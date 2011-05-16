@@ -16,7 +16,6 @@ angular.widget('@my:tabs', function(arrayProperty, compileElement) {
         var newId = 'my-tabs_' + sequence++;
         linkElement.append(newTab.show().attr('id', newId));
         linkElement.tabs('add', '#'+newId, 'label');
-        newScope.$eval();
       });
     } 
     scope.$watch(arrayProperty+'.length', function(length, oldLength) {
