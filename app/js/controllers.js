@@ -3,8 +3,16 @@
 /* Controllers */
 
 
-function MyCtrl1() {}
-MyCtrl1.$inject = [];
+function MyCtrl1($scope, $timeout) {
+  $scope.i = 0;
+  
+  (function increment() {
+    $timeout(function() {
+      ++$scope.i;
+      increment();
+    }, 1 * 1000);
+  })();
+}
 
 
 function MyCtrl2() {
